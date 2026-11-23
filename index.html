@@ -63,24 +63,24 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 @media(max-width:390px){nav a{padding:9px 11px;font-size:14px}.profile-card{grid-template-columns:38% 1fr;min-height:250px}.profile-cover,.profile-cover img,.photo-empty{min-height:250px}.profile-info{padding:14px}.profile-facts{font-size:14px}}
 
 /* Perfil em tela inteira */
-#detail{position:fixed;inset:0;width:100%;height:100dvh;min-height:100vh;padding:0;overflow:hidden;background:#000}
-#detail .detail-wrap{position:relative;width:100%;height:100%;max-width:none;margin:0;overflow:hidden}
+#detail{position:fixed;inset:0;width:100%;height:100dvh;min-height:100vh;padding:0;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;background:#000}
+#detail .detail-wrap{position:relative;width:100%;height:auto;min-height:100%;max-width:none;margin:0;overflow:visible}
 #detail .detail-top{position:absolute;top:max(14px,env(safe-area-inset-top));left:14px;right:auto;z-index:8;margin:0;padding:0;background:none;backdrop-filter:none}
 #detail .detail-top .secondary{border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.34);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:999px;padding:11px 15px}
-#detail .profile-showcase{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;border-radius:0;box-shadow:none}
+#detail .profile-showcase{position:relative;width:100%;height:100dvh;min-height:100vh;max-width:none;margin:0;border-radius:0;box-shadow:none}
 #detail .mainphoto{width:100%;height:100%;min-height:0;border-radius:0}
 #detail .mainphoto img{object-fit:cover;object-position:center center}
-#detail .photo-overlay{top:auto;bottom:calc(166px + env(safe-area-inset-bottom));left:16px;right:16px;max-width:580px;padding:13px 15px;background:rgba(0,0,0,.34);border-color:rgba(255,255,255,.2)}
+#detail .photo-overlay{top:auto;bottom:calc(16px + env(safe-area-inset-bottom));left:16px;right:16px;max-width:580px;padding:13px 15px;background:rgba(0,0,0,.34);border-color:rgba(255,255,255,.2)}
 #detail .photo-overlay .kicker{font-size:10px}
 #detail .photo-overlay h2{font-size:clamp(22px,5vw,30px);margin-top:3px}
 #detail .photo-overlay p{font-size:13px;line-height:1.35;margin-top:5px}
 #detail .facts{margin-top:6px}
-#detail .thumbs{position:absolute;left:16px;right:16px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:7;max-width:none;margin:0;padding:0}
+#detail .thumbs{position:relative;left:auto;right:auto;bottom:auto;z-index:7;max-width:none;margin:14px;padding:3px}
 #detail .thumbs[hidden]{display:none}
-#detail .profile-actions{position:absolute;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9;max-width:none;margin:0;padding:0;background:none}
+#detail .profile-actions{position:relative;left:auto;right:auto;bottom:auto;z-index:9;max-width:none;margin:0;padding:12px 14px calc(20px + env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,#000 28%)}
 #detail .profile-actions .btn{min-height:54px}
 #detail .profile-note{display:none}
-@media(max-width:720px){#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(166px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{left:14px;right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(22px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
+@media(max-width:720px){#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{margin-left:14px;margin-right:14px}#detail .profile-actions{padding-left:14px;padding-right:14px}#detail .detail-top{left:14px}}
 </style>
 </head>
 <body>
