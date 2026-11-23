@@ -80,7 +80,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 #detail .profile-actions{position:absolute;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9;max-width:none;margin:0;padding:0;background:none}
 #detail .profile-actions .btn{min-height:54px}
 #detail .profile-note{display:none}
-@media(max-width:720px){#detail .mainphoto img{object-position:clamp(58%,calc(78% - 3.5vw + .5svh - 4px),68%) center}#detail .photo-overlay{bottom:calc(166px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{left:14px;right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(22px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
+@media(max-width:720px){#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(166px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{left:14px;right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(22px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
 </style>
 </head>
 <body>
@@ -110,10 +110,28 @@ const validPhoto=u=>typeof u==="string"&&(/^https:\/\/[^\s]+$/i.test(u)||/^\/ass
 const wa=n=>{const d=String(n||"").replace(/\D/g,"");return d.length>=10&&d.length<=15?"https://wa.me/"+d:null};
 function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span class="photo-empty">Foto não disponível</span>'}
 function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">WhatsApp ↗</a>':'<div class="wa-unavailable"><button class="btn" type="button" disabled>WhatsApp</button><span>Contato oficial em configuração.</span></div>'}
+function centerProfilePhoto(img){
+ if(!img.naturalWidth||!img.naturalHeight)return;
+ const box=img.parentElement.getBoundingClientRect();
+ if(!box.width||!box.height)return;
+ const imageRatio=img.naturalWidth/img.naturalHeight;
+ const frameRatio=box.width/box.height;
+ if(imageRatio<=frameRatio){img.style.objectPosition="50% 50%";return}
+ const renderedWidth=box.height*imageRatio;
+ const overflow=renderedWidth-box.width;
+ const focalX=renderedWidth*.61;
+ const position=Math.max(0,Math.min(1,(focalX-box.width/2)/overflow));
+ img.style.objectPosition=(position*100).toFixed(2)+"% center";
+}
+const profilePhotoResizeObserver=new ResizeObserver(()=>{
+ const img=$("mainphoto").querySelector("img");
+ if(img)centerProfilePhoto(img);
+});
+profilePhotoResizeObserver.observe($("mainphoto"));
 function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photos:[]).filter(validPhoto);$("person-name").textContent=p.name||"Perfil";
 $("bio").textContent=p.bio||"Ela chama atenção no primeiro olhar. Explore as fotos e conheça mais.";
 $("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVerified===true?"18+":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
-const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
+const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);const img=$("mainphoto").querySelector("img");if(img){const frame=()=>centerProfilePhoto(img);img.addEventListener("load",frame,{once:true});if(img.complete)frame()}[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
 $("thumbs").hidden=pics.length<2;$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
 draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"um perfil")+" no site PRIV e gostaria de conversar.");
 $("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
