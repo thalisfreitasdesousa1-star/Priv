@@ -64,7 +64,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 </header>
 <main>
 <div class="kicker">VITRINE PRIV</div><h1>Perfis</h1>
-<p class="intro">Conheça os perfis disponíveis. Abra um cartão para ver fotos, informações e o contato autorizado.</p>
+<p class="intro">Um perfil que chama atenção. Veja as fotos e descubra mais.</p>
 <div class="profile-list" id="profiles"><p class="empty">Carregando perfis…</p></div>
 </main>
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil">
@@ -85,8 +85,8 @@ const wa=n=>{const d=String(n||"").replace(/\D/g,"");return d.length>=10&&d.leng
 function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span class="photo-empty">Foto não disponível</span>'}
 function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">Conversar no WhatsApp ↗</a>':'<p class="notice">Contato ainda não disponível.</p>'}
 function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photos:[]).filter(validPhoto);$("person-name").textContent=p.name||"Perfil";
-$("bio").textContent=p.bio||"Informações em atualização.";
-$("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
+$("bio").textContent=p.bio||"Uma presença que desperta curiosidade. Explore as fotos e conheça mais.";
+$("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVerified===true?"18+":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
 const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
 $("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
 draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"um perfil")+" no site PRIV e gostaria de conversar.");
@@ -97,10 +97,10 @@ function render(){const profiles=(store.profiles||[]).filter(p=>p&&p.published==
 if(!profiles.length){$("profiles").innerHTML='<p class="empty">Nenhum perfil disponível no momento.</p>';return}
 profiles.forEach(p=>{const card=document.createElement("article");card.className="profile-card";
 const cover=document.createElement("button");cover.type="button";cover.className="profile-cover";cover.setAttribute("aria-label","Abrir perfil de "+(p.name||"perfil"));cover.innerHTML=image((p.photos||[])[0],p.name||"Perfil");cover.addEventListener("click",()=>showProfile(p));
-const info=document.createElement("div");info.className="profile-info";const caption=document.createElement("p");caption.className="profile-caption";caption.textContent=p.bio||"Perfil PRIV";
+const info=document.createElement("div");info.className="profile-info";const caption=document.createElement("p");caption.className="profile-caption";caption.textContent=p.bio||"Uma presença que desperta curiosidade.";
 const name=document.createElement("h2");name.className="profile-name";name.textContent=p.name||"Perfil";
-const facts=document.createElement("p");facts.className="profile-facts";facts.textContent=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":null,p.city].filter(Boolean).join(" · ");
-const action=document.createElement("button");action.type="button";action.className="btn";action.textContent="Ver perfil";action.addEventListener("click",()=>showProfile(p));
+const facts=document.createElement("p");facts.className="profile-facts";facts.textContent=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVerified===true?"18+":null,p.city].filter(Boolean).join(" · ");
+const action=document.createElement("button");action.type="button";action.className="btn";action.textContent="Visualizar 👀";action.addEventListener("click",()=>showProfile(p));
 info.append(caption,name);if(facts.textContent)info.append(facts);info.append(action);card.append(cover,info);$("profiles").append(card)})}
 fetch("./data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("dados indisponíveis");return r.json()}).then(d=>{store=d;render()}).catch(()=>{$("profiles").innerHTML='<p class="empty">Não foi possível carregar os perfis agora.</p>'});
 $("enter").addEventListener("click",()=>{$("gate").hidden=true;sessionStorage.setItem("priv18","yes")});
