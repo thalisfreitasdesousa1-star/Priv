@@ -47,7 +47,7 @@ p{color:#ccc;line-height:1.65}
 .photo-overlay{position:absolute;top:auto;bottom:16px;left:16px;right:16px;max-width:600px;padding:12px 16px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.24);border-radius:18px;color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .photo-overlay .kicker{color:#fff}.photo-overlay h2{font-size:clamp(24px,4vw,32px);margin:4px 0 0}.photo-overlay p{margin:5px 0 0;color:#f1f1f1;font-size:14px;line-height:1.4}
 .thumbs{display:flex;gap:10px;max-width:900px;margin:14px auto;overflow:auto;padding:3px}
-.thumbs button{width:76px;height:86px;flex:0 0 76px;padding:0;background:#181818;border:2px solid transparent;border-radius:11px;overflow:hidden;cursor:pointer}
+.thumbs button{width:72px;height:96px;flex:0 0 72px;padding:0;background:#181818;border:2px solid transparent;border-radius:11px;overflow:hidden;cursor:pointer}
 .thumbs button.active{border-color:#fff}.thumbs img{width:100%;height:100%;object-fit:cover}
 .facts{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0 0}.fact{border:1px solid rgba(255,255,255,.48);border-radius:99px;padding:7px 11px;font-size:13px;color:#fff}
 .profile-actions{position:sticky;bottom:0;z-index:4;max-width:900px;margin:8px auto 0;padding:12px 0 max(12px,env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,#000 28%)}
@@ -67,20 +67,20 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 #detail .detail-wrap{position:relative;width:100%;height:auto;min-height:100%;max-width:none;margin:0;padding-bottom:calc(96px + env(safe-area-inset-bottom));overflow:visible}
 #detail .detail-top{position:absolute;top:max(14px,env(safe-area-inset-top));left:14px;right:auto;z-index:8;margin:0;padding:0;background:none;backdrop-filter:none}
 #detail .detail-top .secondary{border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.34);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:999px;padding:11px 15px}
-#detail .profile-showcase{position:relative;width:100%;height:auto;min-height:0;max-width:none;margin:0;border-radius:0;box-shadow:none;overflow:visible}
-#detail .mainphoto{display:block;width:100%;height:auto;min-height:0;border-radius:0;background:#000}
-#detail .mainphoto img{display:block;width:100%;height:auto;max-height:none;object-fit:contain;object-position:center center}
+#detail .profile-showcase{position:relative;width:min(100%,480px);height:auto;min-height:0;max-width:480px;margin:0 auto;border-radius:0;box-shadow:none;overflow:visible}
+#detail .mainphoto{display:block;width:100%;height:auto;aspect-ratio:3/4;min-height:0;border-radius:0;background:#000}
+#detail .mainphoto img{display:block;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center center}
 #detail .photo-overlay{top:auto;bottom:calc(12px + env(safe-area-inset-bottom));left:16px;right:16px;max-width:580px;padding:13px 15px;background:rgba(0,0,0,.34);border-color:rgba(255,255,255,.2)}
 #detail .photo-overlay .kicker{font-size:10px}
 #detail .photo-overlay h2{font-size:clamp(22px,5vw,30px);margin-top:3px}
 #detail .photo-overlay p{font-size:13px;line-height:1.35;margin-top:5px}
 #detail .facts{margin-top:6px}
-#detail .thumbs{position:relative;left:auto;right:auto;bottom:auto;z-index:7;max-width:none;margin:14px;padding:3px}
+#detail .thumbs{position:relative;left:auto;right:auto;bottom:auto;z-index:7;display:flex;justify-content:center;max-width:480px;margin:14px auto;padding:3px}
 #detail .thumbs[hidden]{display:none}
 #detail .profile-actions{position:fixed;left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:40;max-width:900px;margin:0 auto;padding:0;background:none}
 #detail .profile-actions .btn{min-height:54px}
 #detail .profile-note{display:none}
-@media(max-width:720px){#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{margin-left:14px;margin-right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
+@media(max-width:720px){#detail .profile-showcase{width:100%;max-width:480px}#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{margin:14px auto;padding-left:14px;padding-right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
 </style>
 </head>
 <body>
@@ -119,7 +119,7 @@ function centerProfilePhoto(img){
  if(imageRatio<=frameRatio){img.style.objectPosition="50% 50%";return}
  const renderedWidth=box.height*imageRatio;
  const overflow=renderedWidth-box.width;
- const focalX=renderedWidth*.61;
+ const focalX=renderedWidth*.5;
  const position=Math.max(0,Math.min(1,(focalX-box.width/2)/overflow));
  img.style.objectPosition=(position*100).toFixed(2)+"% center";
 }
