@@ -80,7 +80,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 const $=id=>document.getElementById(id);
 let store={site:{},profiles:[],spaces:[]};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const validPhoto=u=>typeof u==="string"&&/^https:\/\/[^\s]+$/i.test(u);
+const validPhoto=u=>typeof u==="string"&&(/^https:\/\/[^\s]+$/i.test(u)||/^\/assets\/[a-z0-9._/-]+$/i.test(u));
 const wa=n=>{const d=String(n||"").replace(/\D/g,"");return d.length>=10&&d.length<=15?"https://wa.me/"+d:null};
 function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span class="photo-empty">Foto não disponível</span>'}
 function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">Conversar no WhatsApp ↗</a>':'<p class="notice">Contato ainda não disponível.</p>'}
@@ -93,7 +93,7 @@ draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"
 $("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
 function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";history.replaceState(null,"",location.pathname)}
 $("back").addEventListener("click",closeProfile);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("detail").hidden)closeProfile()});
-function render(){const profiles=(store.profiles||[]).filter(p=>p&&p.published===true&&p.consent===true&&Number(p.age)>=18);$("profiles").replaceChildren();
+function render(){const profiles=(store.profiles||[]).filter(p=>p&&p.published===true&&p.consent===true&&(p.adultVerified===true||Number(p.age)>=18));$("profiles").replaceChildren();
 if(!profiles.length){$("profiles").innerHTML='<p class="empty">Nenhum perfil disponível no momento.</p>';return}
 profiles.forEach(p=>{const card=document.createElement("article");card.className="profile-card";
 const cover=document.createElement("button");cover.type="button";cover.className="profile-cover";cover.setAttribute("aria-label","Abrir perfil de "+(p.name||"perfil"));cover.innerHTML=image((p.photos||[])[0],p.name||"Perfil");cover.addEventListener("click",()=>showProfile(p));

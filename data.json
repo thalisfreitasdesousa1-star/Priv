@@ -6,6 +6,17 @@
     "address": "",
     "about": "Um espaço reservado, com privacidade e discrição."
   },
-  "profiles": [],
+  "profiles": [
+    {
+      "id": "perfil-priv",
+      "name": "Perfil PRIV",
+      "adultVerified": true,
+      "consent": true,
+      "published": true,
+      "photos": [
+        "/assets/perfil-priv.jpg"
+      ]
+    }
+  ],
   "spaces": []
 }
