@@ -14,7 +14,10 @@
       "consent": true,
       "published": true,
       "photos": [
-        "/assets/perfil-priv.jpg"
+        "/assets/perfil-priv.jpg",
+        "/assets/perfil-priv-02.jpg",
+        "/assets/perfil-priv-03.jpg",
+        "/assets/perfil-priv-04.jpg"
       ]
     }
   ],
