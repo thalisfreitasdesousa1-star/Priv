@@ -61,6 +61,26 @@ footer{padding:25px 6%;border-top:1px solid #444;text-align:center;color:#aaa;fo
 footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px}
 @media(max-width:720px){header{align-items:flex-start;flex-direction:column;gap:14px}nav{width:100%;padding-bottom:3px}main{padding-top:36px}.profile-card{grid-template-columns:36% 1fr;min-height:270px}.profile-cover,.profile-cover img,.photo-empty{min-height:270px}.profile-info{padding:18px}.detail{padding-left:14px;padding-right:14px}.mainphoto{height:70svh;min-height:440px}.photo-overlay{top:auto;bottom:12px;left:12px;right:12px;padding:11px}.thumbs{margin-top:10px}.profile-actions{margin-top:6px}}
 @media(max-width:390px){nav a{padding:9px 11px;font-size:14px}.profile-card{grid-template-columns:38% 1fr;min-height:250px}.profile-cover,.profile-cover img,.photo-empty{min-height:250px}.profile-info{padding:14px}.profile-facts{font-size:14px}}
+
+/* Perfil em tela inteira */
+#detail{position:fixed;inset:0;width:100%;height:100dvh;min-height:100vh;padding:0;overflow:hidden;background:#000}
+#detail .detail-wrap{position:relative;width:100%;height:100%;max-width:none;margin:0;overflow:hidden}
+#detail .detail-top{position:absolute;top:max(14px,env(safe-area-inset-top));left:14px;right:auto;z-index:8;margin:0;padding:0;background:none;backdrop-filter:none}
+#detail .detail-top .secondary{border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.34);color:#fff;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:999px;padding:11px 15px}
+#detail .profile-showcase{position:absolute;inset:0;width:100%;height:100%;max-width:none;margin:0;border-radius:0;box-shadow:none}
+#detail .mainphoto{width:100%;height:100%;min-height:0;border-radius:0}
+#detail .mainphoto img{object-fit:cover;object-position:center center}
+#detail .photo-overlay{top:auto;bottom:calc(166px + env(safe-area-inset-bottom));left:16px;right:16px;max-width:580px;padding:13px 15px;background:rgba(0,0,0,.34);border-color:rgba(255,255,255,.2)}
+#detail .photo-overlay .kicker{font-size:10px}
+#detail .photo-overlay h2{font-size:clamp(22px,5vw,30px);margin-top:3px}
+#detail .photo-overlay p{font-size:13px;line-height:1.35;margin-top:5px}
+#detail .facts{margin-top:6px}
+#detail .thumbs{position:absolute;left:16px;right:16px;bottom:calc(78px + env(safe-area-inset-bottom));z-index:7;max-width:none;margin:0;padding:0}
+#detail .thumbs[hidden]{display:none}
+#detail .profile-actions{position:absolute;left:16px;right:16px;bottom:max(12px,env(safe-area-inset-bottom));z-index:9;max-width:none;margin:0;padding:0;background:none}
+#detail .profile-actions .btn{min-height:54px}
+#detail .profile-note{display:none}
+@media(max-width:720px){#detail .photo-overlay{bottom:calc(166px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{left:14px;right:14px}#detail .profile-actions{left:14px;right:14px}#detail .detail-top{left:14px}}
 </style>
 </head>
 <body>
@@ -75,7 +95,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 <div class="profile-list" id="profiles"><p class="empty">Carregando perfis…</p></div>
 </main>
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil">
-<div class="detail-wrap"><div class="detail-top"><div class="brand"><div class="logo"><span>P</span>RIV</div><div class="sub">EXCLUSIVO +18</div></div><button class="btn secondary" id="back">← Voltar à vitrine</button></div>
+<div class="detail-wrap"><div class="detail-top"><button class="btn secondary" id="back">← Voltar à vitrine</button></div>
 <section class="profile-showcase" aria-label="Fotos do perfil"><div class="mainphoto" id="mainphoto"></div><div class="photo-overlay"><div class="kicker">PERFIL PRIV</div><h2 id="person-name"></h2><div class="facts" id="facts"></div><p id="bio"></p></div></section><div class="thumbs" id="thumbs" aria-label="Galeria de fotos"></div><div class="profile-actions" id="person-contact"></div><p class="profile-note">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div>
 </div>
 <footer>PRIV © 2026 · Exclusivo +18
@@ -94,7 +114,7 @@ function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photo
 $("bio").textContent=p.bio||"Ela chama atenção no primeiro olhar. Explore as fotos e conheça mais.";
 $("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVerified===true?"18+":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
 const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
-$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
+$("thumbs").hidden=pics.length<2;$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
 draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"um perfil")+" no site PRIV e gostaria de conversar.");
 $("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
 function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";history.replaceState(null,"",location.pathname)}
