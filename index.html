@@ -1,80 +1,18 @@
 <!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#000000">
-<meta name="description" content="PRIV — espaço exclusivo +18">
-<title>PRIV | Vitrine exclusiva +18</title>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="description" content="PRIV — espaço exclusivo +18"><title>PRIV | Exclusivo +18</title>
 <style>
-:root{color-scheme:dark;--bg:#000;--panel:#111;--line:#444;--white:#fff;--muted:#ccc;--brand:#e52b49}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--white);font:16px system-ui,-apple-system,Arial,sans-serif}
-a{color:inherit}button{font:inherit}
-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 6%;border-bottom:1px solid var(--line)}
-.brand{flex:0 0 auto;text-decoration:none}.logo{font-size:43px;font-weight:950;font-style:italic;letter-spacing:-3px;line-height:1}.logo span{color:var(--brand)}.sub{font-size:10px;letter-spacing:3px;color:#ff7a8d;font-weight:750;margin-top:5px}
-nav{display:flex;align-items:center;gap:8px;overflow:auto}
-nav a{padding:10px 13px;border:1px solid transparent;border-radius:999px;text-decoration:none;white-space:nowrap;color:#ddd}
-nav a:hover,nav a[aria-current=page]{background:#fff;color:#000}
-main{max-width:1180px;margin:0 auto;padding:48px 6% 76px}
-.kicker{font-size:11px;letter-spacing:2px;font-weight:800;color:#fff}
-h1{font-size:clamp(34px,6vw,54px);line-height:1.08;margin:12px 0}
-p{color:#ccc;line-height:1.65}
-.intro{max-width:720px;margin:0 0 28px}
-.profile-list{display:grid;gap:22px}
-.profile-card{display:grid;grid-template-columns:minmax(150px,34%) 1fr;min-height:300px;background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 18px 42px #0009}
-.profile-cover{display:block;width:100%;height:100%;min-height:300px;padding:0;border:0;background:#1b1b1b;color:#ccc;cursor:pointer;overflow:hidden}
-.profile-cover img{display:block;width:100%;height:100%;min-height:300px;object-fit:cover}
-.photo-empty{display:grid;place-items:center;width:100%;height:100%;min-height:300px;padding:18px;text-align:center;color:#aaa;background:linear-gradient(145deg,#292929,#101010)}
-.profile-info{display:flex;flex-direction:column;align-items:flex-start;padding:24px}
-.profile-caption{margin:0 0 7px;color:#bbb;font-size:15px}
-.profile-name{font-size:clamp(24px,4vw,34px);margin:0 0 15px}
-.profile-facts{display:flex;flex-wrap:wrap;gap:9px 18px;margin:0 0 20px;color:#ddd}
-.profile-bio{margin:0 0 22px;white-space:pre-line}
-.btn{display:inline-flex;align-items:center;justify-content:center;background:#fff;color:#000;border:1px solid #fff;border-radius:999px;padding:12px 19px;font-weight:750;text-decoration:none;cursor:pointer}
-.btn:hover{background:#ddd}
-.empty{padding:25px 0;text-align:center;color:#bbb}
-.notice{background:#111;border:1px solid #444;border-radius:14px;padding:20px;color:#eee}
-.detail{position:fixed;inset:0;background:#000;z-index:30;overflow:auto;padding:22px 6% 60px}
-.detail[hidden],.gate[hidden]{display:none}
-.detail-wrap{max-width:1050px;margin:auto}
-.detail-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}
-.secondary{background:transparent;color:#fff;border-color:#777}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
-.mainphoto{height:460px;border-radius:18px;overflow:hidden;background:#181818;display:grid;place-items:center}
-.mainphoto img{width:100%;height:100%;object-fit:cover}
-.thumbs{display:flex;gap:10px;overflow:auto;margin-top:12px}
-.thumbs button{width:78px;height:78px;flex:0 0 78px;padding:0;background:#181818;border:2px solid transparent;border-radius:9px;overflow:hidden;cursor:pointer}
-.thumbs button.active{border-color:#fff}.thumbs img{width:100%;height:100%;object-fit:cover}
-.facts{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.fact{border:1px solid #555;border-radius:99px;padding:9px 13px;font-size:13px}
-.gate{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#292929,transparent 60%),#000;z-index:50;display:grid;place-items:center;text-align:center;padding:25px}
-.gate>div{max-width:450px}.gate .logo{font-size:70px}.gate p{margin-bottom:25px}
-footer{padding:25px 6%;border-top:1px solid #444;text-align:center;color:#aaa;font-size:13px}
-footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px}
-@media(max-width:720px){header{align-items:flex-start;flex-direction:column;gap:14px}nav{width:100%;padding-bottom:3px}main{padding-top:36px}.profile-card{grid-template-columns:36% 1fr;min-height:270px}.profile-cover,.profile-cover img,.photo-empty{min-height:270px}.profile-info{padding:18px}.detail-grid{grid-template-columns:1fr}.mainphoto{height:380px}}
-@media(max-width:390px){nav a{padding:9px 11px;font-size:14px}.profile-card{grid-template-columns:38% 1fr;min-height:250px}.profile-cover,.profile-cover img,.photo-empty{min-height:250px}.profile-info{padding:14px}.profile-facts{font-size:14px}}
-</style>
-</head>
-<body>
+:root{color-scheme:dark;--red:#e52b49;--bg:#000000;--panel:#111111;--line:#444444}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:#fff;font:16px system-ui,-apple-system,Arial,sans-serif}a{color:inherit}button{font:inherit}header{display:flex;align-items:center;justify-content:space-between;padding:17px 6%;border-bottom:1px solid var(--line)}.logo{font-size:43px;font-weight:950;font-style:italic;letter-spacing:-3px;line-height:1}.logo span{color:var(--red)}.sub{font-size:10px;letter-spacing:3px;color:#ff7a8d;font-weight:750;margin-top:5px}.city{font-size:12px;color:#cccccc}nav{display:flex;gap:20px;flex-wrap:wrap;padding:15px 6%;background:#080808}nav a{text-decoration:none;font-size:14px}nav a:hover{color:#ffffff}.hero{padding:100px 6%;background:radial-gradient(ellipse at 80% 20%,#292929,transparent 58%),linear-gradient(130deg,#191919,#000000)}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800;color:#ffffff}h1{font-size:clamp(42px,8vw,82px);line-height:1.06;margin:18px 0}h2{font-size:clamp(27px,4vw,38px)}p{color:#dddddd;line-height:1.65;max-width:680px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#ffffff;color:#000000;border:1px solid #ffffff;border-radius:10px;padding:14px 20px;font-weight:750;text-decoration:none;cursor:pointer}.btn:hover{filter:brightness(1.13)}.btn.secondary{background:transparent;border-color:#aaaaaa}.btn:disabled{opacity:.45;cursor:not-allowed}.section{padding:65px 6%;max-width:1280px;margin:auto}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}.card button{width:100%;padding:0;background:none;border:0;color:inherit;text-align:left;cursor:pointer}.card button:hover .card-title{color:#ffffff}.card-title{display:block;font-size:20px;font-weight:750;padding:16px 18px 4px}.card-sub{display:block;color:#cccccc;font-size:13px;padding:0 18px 18px}.photo{height:290px;background:linear-gradient(135deg,#333333,#111111);display:grid;place-items:center;color:#cccccc;text-align:center;padding:14px;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover}.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.gallery .photo{height:240px;border-radius:14px}.notice{background:#111111;border:1px solid var(--line);padding:20px;border-radius:12px;color:#eeeeee}.muted{color:#bbbbbb}.detail{position:fixed;inset:0;background:#000000;z-index:30;overflow:auto;padding:24px 6% 70px}.detail[hidden],.gate[hidden]{display:none}.detail-wrap{max-width:1050px;margin:auto}.detail-top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:26px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.detail .mainphoto{height:460px;border-radius:16px;overflow:hidden;background:#111111;display:grid;place-items:center}.mainphoto img{width:100%;height:100%;object-fit:cover}.thumbs{display:flex;gap:10px;overflow:auto;margin-top:12px}.thumbs button{width:88px;height:88px;flex:0 0 88px;padding:0;background:#111111;border:2px solid transparent;border-radius:8px;overflow:hidden;cursor:pointer}.thumbs button.active{border-color:#ffffff}.thumbs img{width:100%;height:100%;object-fit:cover}.facts{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0}.fact{border:1px solid var(--line);border-radius:99px;padding:9px 13px;font-size:13px}.gate{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#2a2a2a,transparent 60%),#000000;z-index:50;display:grid;place-items:center;text-align:center;padding:25px}.gate>div{max-width:450px}.gate .logo{font-size:70px}.gate p{margin-bottom:25px}footer{text-align:center;padding:30px 6%;color:#aaaaaa;border-top:1px solid var(--line);font-size:12px}footer a{color:#ffffff}.empty{grid-column:1/-1;background:#111111;border:1px dashed #555555;border-radius:14px;padding:35px;text-align:center;color:#cccccc}.admin-link{font-size:12px;color:#aaaaaa;text-decoration:none}@media(max-width:700px){.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:200px}.gallery .photo{height:145px}.detail-grid{grid-template-columns:1fr}.detail .mainphoto{height:380px}header .logo{font-size:36px}.hero{padding:70px 6%}.section{padding:48px 6%}.city{font-size:10px}}@media(max-width:370px){.cards{grid-template-columns:1fr}}
+</style></head><body>
 <div class="gate" id="gate"><div><div class="logo"><span>P</span>RIV</div><div class="sub">EXCLUSIVO +18</div><h2>Bem-vindo ao seu espaço privado</h2><p>Conteúdo destinado exclusivamente a pessoas com 18 anos ou mais.</p><button class="btn" id="enter">Tenho 18 anos ou mais</button> <button class="btn secondary" id="leave">Sair</button></div></div>
-<header>
-<a class="brand" href="./" aria-label="PRIV — início"><div class="logo"><span>P</span>RIV</div><div class="sub">EXCLUSIVO +18</div></a>
-<nav aria-label="Navegação principal"><a href="./" aria-current="page">Vitrine</a><a href="espaco.html">Nosso espaço</a><a href="localizacao.html">Localização</a><a href="contato.html">Contato</a><a href="perguntas.html">Dúvidas</a></nav>
-</header>
-<main>
-<div class="kicker">VITRINE PRIV</div><h1>Perfis</h1>
-<p class="intro">Conheça os perfis disponíveis. Abra um cartão para ver fotos, informações e o contato autorizado.</p>
-<div class="profile-list" id="profiles"><p class="empty">Carregando perfis…</p></div>
-</main>
-<div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil">
-<div class="detail-wrap"><div class="detail-top"><div class="brand"><div class="logo"><span>P</span>RIV</div><div class="sub">EXCLUSIVO +18</div></div><button class="btn secondary" id="back">← Voltar à vitrine</button></div>
-<div class="detail-grid"><div><div class="mainphoto" id="mainphoto"></div><div class="thumbs" id="thumbs"></div></div>
-<div><div class="kicker">PERFIL PRIV</div><h2 id="person-name"></h2><div class="facts" id="facts"></div><p id="bio"></p><div id="person-contact"></div><p style="font-size:12px;color:#aaa">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div></div></div>
-</div>
-<footer>PRIV © 2026 · Exclusivo +18
-<div class="footer-links"><a href="privacidade.html">Privacidade</a><a href="perguntas.html">Dúvidas</a><a href="admin.html">Gerenciador de conteúdo</a></div>
-</footer>
+<header><div><div class="logo"><span>P</span>RIV</div><div class="sub">EXCLUSIVO +18</div></div><div class="city" id="city">CAMPO GRANDE · MS</div></header>
+<nav><a href="#inicio">Início</a><a href="#perfis">Perfis</a><a href="#espaco">Nosso espaço</a><a href="#localizacao">Localização</a><a href="#contato">Contato</a><a href="perguntas.html">Dúvidas</a></nav>
+<main><div id="inicio"></div>
+<section class="section" id="perfis"><div class="eyebrow">VITRINE PRIV</div><h2>Perfis</h2><p>Toque na foto para conhecer o perfil completo e acessar o contato disponível.</p><div class="cards" id="profiles"><div class="empty">Carregando perfis…</div></div></section>
+<section class="section" id="espaco"><div class="eyebrow">AMBIENTES PRIV</div><h2>Nosso espaço</h2><p id="about">Ambientes e fotos reais serão publicados quando estiverem disponíveis.</p><div class="gallery" id="spaces"></div></section>
+<section class="section" id="localizacao"><div class="eyebrow">LOCALIZAÇÃO</div><h2 id="location-title">Campo Grande · MS</h2><p id="location-desc">O endereço exato será compartilhado somente quando disponível.</p></section>
+<section class="section" id="contato"><div class="eyebrow">ATENDIMENTO</div><h2>Contato</h2><div id="contact" class="notice">O WhatsApp oficial ainda não foi configurado.</div></section></main>
+<div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil"><div class="detail-wrap"><div class="detail-top"><div class="logo"><span>P</span>RIV</div><button class="btn secondary" id="back">← Voltar aos perfis</button></div><div class="detail-grid"><div><div class="mainphoto" id="mainphoto"></div><div class="thumbs" id="thumbs"></div></div><div><div class="eyebrow">PERFIL PRIV</div><h1 id="person-name"></h1><div class="facts" id="facts"></div><p id="bio"></p><div id="person-contact"></div><p class="muted" style="font-size:12px">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div></div></div></div>
+<footer>PRIV © 2026 · Exclusivo +18 · <a href="privacidade.html">Privacidade</a> · <a href="perguntas.html">Dúvidas</a> · <a class="admin-link" href="admin.html">Gerenciador de conteúdo</a></footer>
 <script>
 "use strict";
 const $=id=>document.getElementById(id);
@@ -82,29 +20,12 @@ let store={site:{},profiles:[],spaces:[]};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const validPhoto=u=>typeof u==="string"&&/^https:\/\/[^\s]+$/i.test(u);
 const wa=n=>{const d=String(n||"").replace(/\D/g,"");return d.length>=10&&d.length<=15?"https://wa.me/"+d:null};
-function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span class="photo-empty">Foto não disponível</span>'}
-function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">Conversar no WhatsApp ↗</a>':'<p class="notice">Contato ainda não disponível.</p>'}
-function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photos:[]).filter(validPhoto);$("person-name").textContent=p.name||"Perfil";
-$("bio").textContent=p.bio||"Informações em atualização.";
-$("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
-const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
-$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
-draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"um perfil")+" no site PRIV e gostaria de conversar.");
-$("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
-function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";history.replaceState(null,"",location.pathname)}
+function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span>Foto não cadastrada</span>'}
+function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">Conversar no WhatsApp ↗</a>':'<div class="notice">WhatsApp ainda não cadastrado para este perfil.</div>'}
+function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photos:[]).filter(validPhoto);$("person-name").textContent=p.name||"Perfil";$("bio").textContent=p.bio||"Informações em atualização.";$("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":null,p.city,p.languages].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,p.name+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"uma acompanhante")+" no site PRIV e gostaria de conversar.");$("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
+function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";history.replaceState(null,"","#perfis")}
 $("back").addEventListener("click",closeProfile);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("detail").hidden)closeProfile()});
-function render(){const profiles=(store.profiles||[]).filter(p=>p&&p.published===true&&p.consent===true&&Number(p.age)>=18);$("profiles").replaceChildren();
-if(!profiles.length){$("profiles").innerHTML='<p class="empty">Nenhum perfil disponível no momento.</p>';return}
-profiles.forEach(p=>{const card=document.createElement("article");card.className="profile-card";
-const cover=document.createElement("button");cover.type="button";cover.className="profile-cover";cover.setAttribute("aria-label","Abrir perfil de "+(p.name||"perfil"));cover.innerHTML=image((p.photos||[])[0],p.name||"Perfil");cover.addEventListener("click",()=>showProfile(p));
-const info=document.createElement("div");info.className="profile-info";const caption=document.createElement("p");caption.className="profile-caption";caption.textContent=p.bio||"Perfil PRIV";
-const name=document.createElement("h2");name.className="profile-name";name.textContent=p.name||"Perfil";
-const facts=document.createElement("p");facts.className="profile-facts";facts.textContent=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":null,p.city].filter(Boolean).join(" · ");
-const action=document.createElement("button");action.type="button";action.className="btn";action.textContent="Ver perfil";action.addEventListener("click",()=>showProfile(p));
-info.append(caption,name);if(facts.textContent)info.append(facts);info.append(action);card.append(cover,info);$("profiles").append(card)})}
-fetch("./data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("dados indisponíveis");return r.json()}).then(d=>{store=d;render()}).catch(()=>{$("profiles").innerHTML='<p class="empty">Não foi possível carregar os perfis agora.</p>'});
-$("enter").addEventListener("click",()=>{$("gate").hidden=true;sessionStorage.setItem("priv18","yes")});
-$("leave").addEventListener("click",()=>{location.href="https://www.google.com/"});
-if(sessionStorage.getItem("priv18")==="yes")$("gate").hidden=true;
-</script>
-</body></html>
+function render(){const s=store.site||{};$("city").textContent=s.city||"Campo Grande · MS";$("location-title").textContent=s.city||"Campo Grande · MS";$("location-desc").textContent=s.address||"O endereço exato ainda não está disponível.";$("about").textContent=s.about||"Fotos reais do espaço serão publicadas em breve.";$("contact").innerHTML=wa(s.whatsapp)?waButton(s.whatsapp,"Olá! Encontrei a PRIV pelo site e gostaria de informações."):"O WhatsApp oficial ainda não foi configurado.";$("profiles").replaceChildren();const profiles=(store.profiles||[]).filter(p=>p&&p.published===true&&p.consent===true&&Number(p.age)>=18);if(!profiles.length)$("profiles").innerHTML='<div class="empty">Novos perfis serão publicados aqui após verificação e autorização.</div>';profiles.forEach(p=>{const el=document.createElement("article");el.className="card";const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Abrir perfil de "+(p.name||"acompanhante"));b.innerHTML='<div class="photo">'+image((p.photos||[])[0],p.name)+'</div><span class="card-title">'+esc(p.name||"Perfil")+'</span><span class="card-sub">Ver fotos, informações e WhatsApp →</span>';b.addEventListener("click",()=>showProfile(p));el.append(b);$("profiles").append(el)});$("spaces").replaceChildren();if(!(store.spaces||[]).length)$("spaces").innerHTML='<div class="empty">Fotos do espaço ainda não cadastradas.</div>';(store.spaces||[]).filter(x=>x&&validPhoto(x.photo)).forEach(x=>{const el=document.createElement("div");el.className="photo";el.innerHTML=image(x.photo,x.label||"Ambiente");$("spaces").append(el)});const id=decodeURIComponent(location.hash.replace("#perfil-",""));if(location.hash.startsWith("#perfil-"))showProfile(profiles.find(p=>String(p.id)===id))}
+fetch("./data.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("dados indisponíveis");return r.json()}).then(d=>{store=d;render()}).catch(()=>{$("profiles").innerHTML='<div class="empty">Não foi possível carregar os perfis. Tente novamente mais tarde.</div>'});
+$("enter").addEventListener("click",()=>{$("gate").hidden=true;sessionStorage.setItem("priv18","yes")});$("leave").addEventListener("click",()=>{location.href="https://www.google.com/"});if(sessionStorage.getItem("priv18")==="yes")$("gate").hidden=true;
+</script></body></html>
