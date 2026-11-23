@@ -44,7 +44,7 @@ p{color:#ccc;line-height:1.65}
 .profile-showcase{position:relative;max-width:900px;margin:0 auto;border-radius:24px;overflow:hidden;background:#111;box-shadow:0 20px 60px #000b}
 .mainphoto{height:min(72vh,760px);min-height:480px;background:#181818;display:grid;place-items:center}
 .mainphoto img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
-.photo-overlay{position:absolute;top:16px;left:16px;right:16px;max-width:520px;padding:17px 19px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.24);border-radius:18px;color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.photo-overlay{position:absolute;top:auto;bottom:16px;left:16px;right:16px;max-width:600px;padding:17px 19px;background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.24);border-radius:18px;color:#fff;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .photo-overlay .kicker{color:#fff}.photo-overlay h2{font-size:clamp(26px,5vw,38px);margin:6px 0 0}.photo-overlay p{margin:8px 0 0;color:#f1f1f1}
 .thumbs{display:flex;gap:10px;max-width:900px;margin:14px auto;overflow:auto;padding:3px}
 .thumbs button{width:76px;height:86px;flex:0 0 76px;padding:0;background:#181818;border:2px solid transparent;border-radius:11px;overflow:hidden;cursor:pointer}
@@ -52,13 +52,14 @@ p{color:#ccc;line-height:1.65}
 .facts{display:flex;gap:8px;flex-wrap:wrap;margin:9px 0 0}.fact{border:1px solid rgba(255,255,255,.48);border-radius:99px;padding:7px 11px;font-size:13px;color:#fff}
 .profile-actions{position:sticky;bottom:0;z-index:4;max-width:900px;margin:8px auto 0;padding:12px 0 max(12px,env(safe-area-inset-bottom));background:linear-gradient(180deg,transparent,#000 28%)}
 .profile-actions .btn{width:100%;border-radius:15px;padding:16px;background:#fff;color:#000;border:1px solid #fff;font-size:17px;font-weight:800}
+.profile-actions .btn:disabled{opacity:.82;cursor:not-allowed}.wa-unavailable{display:grid;gap:7px;text-align:center}.wa-unavailable span{font-size:12px;color:#aaa}
 .profile-actions .notice{margin:0;text-align:center;border-radius:14px;background:rgba(255,255,255,.12);color:#eee}
 .profile-note{max-width:900px;margin:6px auto 18px;font-size:12px;color:#999;text-align:center}
 .gate{position:fixed;inset:0;background:radial-gradient(circle at 50% 30%,#292929,transparent 60%),#000;z-index:50;display:grid;place-items:center;text-align:center;padding:25px}
 .gate>div{max-width:450px}.gate .logo{font-size:70px}.gate p{margin-bottom:25px}
 footer{padding:25px 6%;border-top:1px solid #444;text-align:center;color:#aaa;font-size:13px}
 footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:10px}
-@media(max-width:720px){header{align-items:flex-start;flex-direction:column;gap:14px}nav{width:100%;padding-bottom:3px}main{padding-top:36px}.profile-card{grid-template-columns:36% 1fr;min-height:270px}.profile-cover,.profile-cover img,.photo-empty{min-height:270px}.profile-info{padding:18px}.detail{padding-left:14px;padding-right:14px}.mainphoto{height:70svh;min-height:440px}.photo-overlay{top:12px;left:12px;right:12px;padding:14px}.thumbs{margin-top:10px}.profile-actions{margin-top:6px}}
+@media(max-width:720px){header{align-items:flex-start;flex-direction:column;gap:14px}nav{width:100%;padding-bottom:3px}main{padding-top:36px}.profile-card{grid-template-columns:36% 1fr;min-height:270px}.profile-cover,.profile-cover img,.photo-empty{min-height:270px}.profile-info{padding:18px}.detail{padding-left:14px;padding-right:14px}.mainphoto{height:70svh;min-height:440px}.photo-overlay{top:auto;bottom:12px;left:12px;right:12px;padding:14px}.thumbs{margin-top:10px}.profile-actions{margin-top:6px}}
 @media(max-width:390px){nav a{padding:9px 11px;font-size:14px}.profile-card{grid-template-columns:38% 1fr;min-height:250px}.profile-cover,.profile-cover img,.photo-empty{min-height:250px}.profile-info{padding:14px}.profile-facts{font-size:14px}}
 </style>
 </head>
@@ -88,9 +89,9 @@ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&
 const validPhoto=u=>typeof u==="string"&&(/^https:\/\/[^\s]+$/i.test(u)||/^\/assets\/[a-z0-9._/-]+$/i.test(u));
 const wa=n=>{const d=String(n||"").replace(/\D/g,"");return d.length>=10&&d.length<=15?"https://wa.me/"+d:null};
 function image(u,alt){return validPhoto(u)?'<img src="'+esc(u)+'" alt="'+esc(alt)+'" loading="lazy" referrerpolicy="no-referrer">':'<span class="photo-empty">Foto não disponível</span>'}
-function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">WhatsApp ↗</a>':'<p class="notice">Contato ainda não disponível.</p>'}
+function waButton(n,msg){const link=wa(n);return link?'<a class="btn" target="_blank" rel="noopener noreferrer" href="'+link+'?text='+encodeURIComponent(msg)+'">WhatsApp ↗</a>':'<div class="wa-unavailable"><button class="btn" type="button" disabled>WhatsApp</button><span>Contato oficial em configuração.</span></div>'}
 function showProfile(p){if(!p)return;const pics=(Array.isArray(p.photos)?p.photos:[]).filter(validPhoto);$("person-name").textContent=p.name||"Perfil";
-$("bio").textContent=p.bio||"Uma presença que desperta curiosidade. Explore as fotos e conheça mais.";
+$("bio").textContent=p.bio||"Ela chama atenção no primeiro olhar. Explore as fotos e conheça mais.";
 $("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVerified===true?"18+":null,p.city].filter(Boolean).map(x=>'<span class="fact">'+esc(x)+'</span>').join("");
 const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
 $("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
