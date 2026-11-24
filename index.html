@@ -90,6 +90,14 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 #detail .photo-overlay{left:0;right:0;bottom:0;max-width:none;border:0;border-radius:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 #detail .thumbs{width:min(calc(100% - 32px),390px);max-width:390px;justify-content:center;margin:14px auto}
 #detail .profile-actions{position:fixed;left:50%;right:auto;bottom:max(12px,env(safe-area-inset-bottom));width:min(calc(100% - 32px),390px);max-width:390px;margin:0;padding:0;transform:translateX(-50%);background:none}
+
+/* Mantém nome e idade discretos sobre a foto; descrição fora da área da imagem */
+#detail .photo-overlay{display:flex;align-items:center;gap:10px;padding:8px 12px}
+#detail .photo-overlay .kicker{display:none}
+#detail .photo-overlay h2{flex:1;font-size:clamp(20px,4vw,25px);margin:0}
+#detail .photo-overlay .facts{margin:0;flex:0 0 auto}
+#detail .photo-overlay p{display:none}
+#detail .profile-description{width:min(calc(100% - 32px),390px);margin:8px auto 0;padding:0 4px;color:#ccc;font-size:14px;line-height:1.45;text-align:center}
 </style>
 </head>
 <body>
@@ -105,7 +113,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 </main>
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil">
 <div class="detail-wrap">
-<section class="profile-showcase" aria-label="Fotos do perfil"><div class="mainphoto" id="mainphoto"></div><div class="photo-overlay"><div class="kicker">PERFIL PRIV</div><h2 id="person-name"></h2><div class="facts" id="facts"></div><p id="bio"></p></div></section><div class="thumbs" id="thumbs" aria-label="Galeria de fotos"></div><div class="profile-actions" id="person-contact"></div><p class="profile-note">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div>
+<section class="profile-showcase" aria-label="Fotos do perfil"><div class="mainphoto" id="mainphoto"></div><div class="photo-overlay"><div class="kicker">PERFIL PRIV</div><h2 id="person-name"></h2><div class="facts" id="facts"></div></div></section><p class="profile-description" id="bio"></p><div class="thumbs" id="thumbs" aria-label="Galeria de fotos"></div><div class="profile-actions" id="person-contact"></div><p class="profile-note">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div>
 </div>
 <footer>PRIV © 2026 · Exclusivo +18
 <div class="footer-links"><a href="privacidade.html">Privacidade</a><a href="perguntas.html">Dúvidas</a><a href="admin.html">Gerenciador de conteúdo</a></div>
