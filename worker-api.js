@@ -14,7 +14,8 @@ if(!path.startsWith("/api/admin/"))return null;
 const url=new URL(request.url),origin=request.headers.get("origin");
 if(["POST","PUT","DELETE"].includes(request.method)&&origin&&origin!==url.origin)return privJson({error:"Origem não autorizada."},403);
 try{
-if(path==="/api/admin/setup-status"&&request.method==="GET"){const admins=await env.PRIV_DB.prepare("SELECT COUNT(*) AS total FROM admins").first();const token=await env.PRIV_DB.prepare("SELECT COUNT(*) AS total FROM setup_tokens WHERE expires_at>?").bind(Math.floor(Date.now()/1000)).first();return privJson({available:Number(admins?.total||0)===0&&Number(token?.total||0)>0})}\nif(path==="/api/admin/setup"){
+if(path==="/api/admin/setup-status"&&request.method==="GET"){const admins=await env.PRIV_DB.prepare("SELECT COUNT(*) AS total FROM admins").first();const token=await env.PRIV_DB.prepare("SELECT COUNT(*) AS total FROM setup_tokens WHERE expires_at>?").bind(Math.floor(Date.now()/1000)).first();return privJson({available:Number(admins?.total||0)===0&&Number(token?.total||0)>0})}
+if(path==="/api/admin/setup"){
 if(request.method!=="POST")return privJson({error:"Método não permitido."},405);
 const count=await env.PRIV_DB.prepare("SELECT COUNT(*) AS total FROM admins").first();
 if(Number(count?.total||0)>0)return privJson({error:"A conta inicial já foi ativada."},409);
