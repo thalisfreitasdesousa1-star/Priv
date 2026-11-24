@@ -83,7 +83,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 @media(max-width:720px){#detail .profile-showcase{width:100%;max-width:480px}#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{margin:14px auto;padding-left:14px;padding-right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
 
 /* Perfil centralizado com foto em proporção original e CTA alinhado */
-#detail .detail-wrap{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+#detail .detail-wrap{display:flex;flex-direction:column;justify-content:center;min-height:100dvh;padding-top:max(14px,env(safe-area-inset-top));padding-bottom:calc(86px + env(safe-area-inset-bottom))}
 #detail .profile-showcase{width:min(calc(100% - 32px),390px);max-width:390px;margin:0 auto;border-radius:18px;overflow:hidden}
 #detail .mainphoto{display:block;width:100%;height:auto;aspect-ratio:auto;min-height:0;background:#000}
 #detail .mainphoto img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
