@@ -81,6 +81,15 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 #detail .profile-actions .btn{min-height:54px}
 #detail .profile-note{display:none}
 @media(max-width:720px){#detail .profile-showcase{width:100%;max-width:480px}#detail .mainphoto img{object-position:center center}#detail .photo-overlay{bottom:calc(12px + env(safe-area-inset-bottom));left:14px;right:14px;max-width:none;padding:12px}#detail .thumbs{margin:14px auto;padding-left:14px;padding-right:14px}#detail .profile-actions{left:14px;right:14px;bottom:calc(10px + env(safe-area-inset-bottom))}#detail .detail-top{left:14px}}
+
+/* Perfil centralizado com foto em proporção original e CTA alinhado */
+#detail .detail-wrap{padding-bottom:calc(92px + env(safe-area-inset-bottom))}
+#detail .profile-showcase{width:min(calc(100% - 32px),390px);max-width:390px;margin:0 auto;border-radius:18px;overflow:hidden}
+#detail .mainphoto{display:block;width:100%;height:auto;aspect-ratio:auto;min-height:0;background:#000}
+#detail .mainphoto img{display:block;width:100%;height:auto;object-fit:contain;object-position:center}
+#detail .photo-overlay{left:0;right:0;bottom:0;max-width:none;border:0;border-radius:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.82));backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+#detail .thumbs{width:min(calc(100% - 32px),390px);max-width:390px;justify-content:center;margin:14px auto}
+#detail .profile-actions{position:fixed;left:50%;right:auto;bottom:max(12px,env(safe-area-inset-bottom));width:min(calc(100% - 32px),390px);max-width:390px;margin:0;padding:0;transform:translateX(-50%);background:none}
 </style>
 </head>
 <body>
@@ -95,7 +104,7 @@ footer a{color:#fff}.footer-links{display:flex;justify-content:center;gap:18px;f
 <div class="profile-list" id="profiles"><p class="empty">Carregando perfis…</p></div>
 </main>
 <div class="detail" id="detail" hidden role="dialog" aria-modal="true" aria-label="Detalhes do perfil">
-<div class="detail-wrap"><div class="detail-top"><button class="btn secondary" id="back">← Voltar à vitrine</button></div>
+<div class="detail-wrap">
 <section class="profile-showcase" aria-label="Fotos do perfil"><div class="mainphoto" id="mainphoto"></div><div class="photo-overlay"><div class="kicker">PERFIL PRIV</div><h2 id="person-name"></h2><div class="facts" id="facts"></div><p id="bio"></p></div></section><div class="thumbs" id="thumbs" aria-label="Galeria de fotos"></div><div class="profile-actions" id="person-contact"></div><p class="profile-note">Fotos e informações publicadas com autorização da titular. Atendimento sujeito à disponibilidade.</p></div>
 </div>
 <footer>PRIV © 2026 · Exclusivo +18
@@ -134,9 +143,9 @@ $("facts").innerHTML=[p.age&&Number(p.age)>=18?Number(p.age)+" anos":p.adultVeri
 const draw=i=>{$("mainphoto").innerHTML=image(pics[i],p.name);const img=$("mainphoto").querySelector("img");if(img){const frame=()=>centerProfilePhoto(img);img.addEventListener("load",frame,{once:true});if(img.complete)frame()}[...$("thumbs").children].forEach((b,j)=>b.classList.toggle("active",i===j))};
 $("thumbs").hidden=pics.length<2;$("thumbs").replaceChildren();pics.forEach((u,i)=>{const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Ver foto "+(i+1));b.innerHTML=image(u,(p.name||"Perfil")+" foto "+(i+1));b.addEventListener("click",()=>draw(i));$("thumbs").append(b)});
 draw(0);$("person-contact").innerHTML=waButton(p.whatsapp||store.site.whatsapp,"Olá! Vi o perfil de "+(p.name||"um perfil")+" no site PRIV e gostaria de conversar.");
-$("detail").hidden=false;document.body.style.overflow="hidden";history.replaceState(null,"","#perfil-"+encodeURIComponent(p.id));$("back").focus()}
-function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";history.replaceState(null,"",location.pathname)}
-$("back").addEventListener("click",closeProfile);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("detail").hidden)closeProfile()});
+$("detail").hidden=false;document.body.style.overflow="hidden";history.pushState({privProfile:true},"","#perfil-"+encodeURIComponent(p.id))}
+function closeProfile(){$("detail").hidden=true;document.body.style.overflow="";if(location.hash.startsWith("#perfil-"))history.replaceState(null,"",location.pathname)}
+window.addEventListener("popstate",()=>{if(!$("detail").hidden){$("detail").hidden=true;document.body.style.overflow=""}});document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("detail").hidden)closeProfile()});
 function render(){const profiles=(store.profiles||[]).filter(p=>p&&p.published===true&&p.consent===true&&(p.adultVerified===true||Number(p.age)>=18));$("profiles").replaceChildren();
 if(!profiles.length){$("profiles").innerHTML='<p class="empty">Nenhum perfil disponível no momento.</p>';return}
 profiles.forEach(p=>{const card=document.createElement("article");card.className="profile-card";
